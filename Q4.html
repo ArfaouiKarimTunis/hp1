@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz HP</title>
+    <style>
+        body { color: blue; }
+        #result { font-weight: bold; }
+    </style>
+   <script>
+    function verif(event) {
+        event.preventDefault(); // Empêche le rechargement de la page
+        let choix = document.querySelector('input[name="choix"]:checked');
+        let result = document.getElementById("result");
+
+        if (!choix) {
+            result.innerHTML = "Choix obligatoire !";
+            result.style.color = "red";
+        } else {
+            if(choix.value == "A") {
+                result.innerHTML = "Réponse sélectionnée : " + choix.value + " est vrai";
+                result.style.color = "green";
+
+                // Créer un bouton "Continuer"
+                let continuerButton = document.createElement("button");
+                continuerButton.innerText = "Continuer";
+                continuerButton.onclick = function() {
+                    // Rediriger vers la prochaine page ou effectuer une action à la suite
+                    window.location.href = "Merci.html"; // Remplacer par le lien approprié
+                };
+
+                // Ajouter le bouton à la page
+                document.getElementById("ajou").appendChild(continuerButton);
+
+            } else {
+                result.innerHTML = "Réponse sélectionnée : " + choix.value + " désolé à la prochaine fois";
+                result.style.color = "red";
+            }
+        }
+    }
+</script>
+</head>
+<body>
+    <form action="Merci.html" onsubmit="verif(event)">
+        <table width="100%">
+            <tr>
+                <td width="50%">
+                    <h3>  Lequel de ces produits possède un écran WUXGA de 16 pouces avec une résolution de 1920 x 1200 et utilise une carte graphique NVIDIA RTX 5000 de génération Ada avec 12 Go de mémoire GDDR6 dédiée ?</h3>
+                    <ul>
+                        <li><input type="radio" name="choix" value="A"> A)  Station de travail mobile HP ZBook Fury 16 G11 - Data Science</li>
+                        <li><input type="radio" name="choix" value="B"> B)  HP 740pm - Series 7 Pro - écran LED incurvé - 40"</li>
+                        <li><input type="radio" name="choix" value="C"> C) HP OMEN Gaming 16</li>
+                        <li><input type="radio" name="choix" value="D"> D) Serveur Rack HPE ProLiant DL380 Gen10</li>
+                    </ul>
+                    <br>
+                    <button onclick="verif(event)">Vérifier</button><br><div id="ajou"></div>
+                    
+                </td>
+                <td>
+                    <center><strong id="result"></strong></center>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz HP</title>
+    <style>
+        body { color: blue; }
+        #result { font-weight: bold; }
+    </style>
+   <script>
+    function verif(event) {
+        event.preventDefault(); // Empêche le rechargement de la page
+        let choix = document.querySelector('input[name="choix"]:checked');
+        let result = document.getElementById("result");
+
+        if (!choix) {
+            result.innerHTML = "Choix obligatoire !";
+            result.style.color = "red";
+        } else {
+            if(choix.value == "C") {
+                result.innerHTML = "Réponse sélectionnée : " + choix.value + " est vrai";
+                result.style.color = "green";
+
+                // Créer un bouton "Continuer"
+                let continuerButton = document.createElement("button");
+                continuerButton.innerText = "Continuer";
+                continuerButton.onclick = function() {
+                    // Rediriger vers la prochaine page ou effectuer une action à la suite
+                    window.location.href = "Q4.html"; // Remplacer par le lien approprié
+                };
+
+                // Ajouter le bouton à la page
+                document.getElementById("ajou").appendChild(continuerButton);
+
+            } else {
+                result.innerHTML = "Réponse sélectionnée : " + choix.value + " désolé à la prochaine fois";
+                result.style.color = "red";
+            }
+        }
+    }
+</script>
+</head>
+<body>
+    <form action="Q4.html" onsubmit="verif(event)">
+        <table width="100%">
+            <tr>
+                <td width="50%">
+                    <h3> Lequel de ces produits possède le processeur Intel Xeon Gold 5218R avec 20 cœurs et une mémoire de 64 Go ?</h3>
+                    <ul>
+                        <li><input type="radio" name="choix" value="A"> A) HP OMEN Gaming 16</li>
+                        <li><input type="radio" name="choix" value="B"> B) Imprimante HP DesignJet T630 36-in Printer (A0)</li>
+                        <li><input type="radio" name="choix" value="C"> C) Serveur Rack HPE ProLiant DL380 Gen10</li>
+                        <li><input type="radio" name="choix" value="D"> D) Écran Plat Interactif Hikvision Ultra HD 4K Tactile</li>
+                    </ul>
+                    <br>
+                    <button onclick="verif(event)">Vérifier</button><br><div id="ajou"></div>
+                    
+                </td>
+                <td>
+                    <center><strong id="result"></strong></center>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
