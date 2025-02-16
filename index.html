@@ -52,7 +52,10 @@
             color: #333;
             text-align: center;
         }
-
+        label{
+            color:aqua;
+            font-family: 'Courier New', Courier, monospace;
+        }
         button {
             background-color: #007bff;
             color: white;
@@ -69,11 +72,40 @@
         }
     </style>
     <script>
+        let numprem=[];
+        let numimp=[];
         let selectedNumbers = [];
-        let mx=20;
+        let mx = 20;
+        let nbp=0;
+        let nbim=0;
         
         
-        function num(){
+        function choisir(){
+            let nb;
+            do {
+                    nb = Math.floor(Math.random() * mx) + 1;
+                    
+                    
+                } while (selectedNumbers.includes(nb));
+            return nb;
+        }
+        function effacer(nb){
+            let f=[];
+            if(nb==1){
+                for(i=0;i<selectedNumbers.length;i++){
+                    if(selectedNumbers[i]%2==0){f.push(selectedNumbers[i]);}
+                }
+            }
+            else{
+                for(i=0;i<selectedNumbers.length;i++){
+                    if(selectedNumbers[i]%2!=0){f.push(selectedNumbers[i]);}
+                }
+            }
+            selectedNumbers=[];
+            selectedNumbers.push(f);
+        }
+        function num1(){
+            
             if (selectedNumbers.length === mx) {
                 alert("Tous les nombres ont été choisis.");
                 selectedNumbers = [];
@@ -81,15 +113,68 @@
             }
             else{
                 let shuffled;
-                
-                do {
-                    shuffled = Math.floor(Math.random() * mx) + 1;
-                } while (selectedNumbers.includes(shuffled));
-            
+                if(nbp==10){
+                        alert("essei 2 terminer")
+                        numprem=[];
+                        nbp=0;
+                        effacer(1);
+                        document.getElementById("num2").innerHTML="";
+                        document.getElementById("num").innerHTML="";
+                        return;
+                        }
+
+
+                shuffled=choisir();
+                while(shuffled%2!=0){
+                    shuffled=choisir();
+                }
+                nbp++;
+                numprem.push(shuffled);
                 selectedNumbers.push(shuffled);
-                document.getElementById("num").innerText = shuffled;
+                let ch=document.getElementById("num").innerText;
+                let ch2=document.getElementById("num2").innerText;
+                document.getElementById("num2").style.color="red";
+                document.getElementById("num2").innerHTML=ch2+" "+ch+" ";
+                document.getElementById("num").style.color="green";
+                document.getElementById("num").innerText =shuffled;
+        }}
+        function num2() {
+        
+             
+            if (selectedNumbers.length === mx) {
+                alert("Tous les nombres ont été choisis.");
+                selectedNumbers = [];
+                document.getElementById("num").innerText = "";
+            }
+            else{
+                let shuffled;
+                if(nbim==10){
+                    alert("essei 1 terminer");
+                        numimp=[];
+                        nbim=0;
+                        effacer(2);
+                        document.getElementById("num2").innerHTML="";
+                        document.getElementById("num").innerHTML="";
+                        return;
+                        }
+
+
+                shuffled=choisir();
+                while(!(shuffled%2!=0)){
+                    shuffled=choisir();
+                }
+                nbim++;
+                numimp.push(shuffled);
+                selectedNumbers.push(shuffled);
+                let ch=document.getElementById("num").innerText;
+                let ch2=document.getElementById("num2").innerText;
+                document.getElementById("num2").style.color="red";
+                document.getElementById("num2").innerHTML=ch2+" "+ch+" ";
+                document.getElementById("num").style.color="green";
+                document.getElementById("num").innerText =shuffled;
         }}
         
+
         
     </script>
 </head>
@@ -97,13 +182,15 @@
     
     <div class="animated-text">HP</div>
         <tr>
-    <table width="50%" border="2">
+    <table width="60%" border="2">
         <tr>
-            <td width="50%">
+            <td width="30%">
                 
-                <button onclick="num()">Choisir num</button>
+                <button onclick="num2()">Choisir numero essei 1</button>
+                <button onclick="num1()">Choisir numero essei 2</button>
             </td>
-            <td>Numéro: <strong id="num"></strong></td>
+            <td width="20%"> <center><h2><label>Numéro:</label></h2></center> <h1><strong id="num"></strong></h1></td>
+            <td><center><h2><label>terminer:</label></h2></center> <h1><strong id="num2"></strong></h1></td>
         </tr>
     </table>
     <iframe src="Q1.html" frameborder="1" name="aff" id="aff" width="75%" height="300px"></iframe>
