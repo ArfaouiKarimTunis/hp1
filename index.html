@@ -107,14 +107,14 @@
         function num1(){
             
             if (selectedNumbers.length === mx) {
-                alert("Tous les nombres ont été choisis.");
                 selectedNumbers = [];
                 document.getElementById("num").innerText = "";
+                nbp=0;
+                nbim=0;
             }
             else{
                 let shuffled;
                 if(nbp==10){
-                        alert("essei 2 terminer")
                         numprem=[];
                         nbp=0;
                         effacer(1);
@@ -142,14 +142,15 @@
         
              
             if (selectedNumbers.length === mx) {
-                alert("Tous les nombres ont été choisis.");
                 selectedNumbers = [];
                 document.getElementById("num").innerText = "";
+                document.getElementById("num2").innerText = "";
+                nbp=0;
+                nbim=0;
             }
             else{
                 let shuffled;
                 if(nbim==10){
-                    alert("essei 1 terminer");
                         numimp=[];
                         nbim=0;
                         effacer(2);
