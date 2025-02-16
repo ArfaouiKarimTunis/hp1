@@ -83,14 +83,12 @@
         }
     });
         }
-        function num() {
-            
-        
+        function num1(){
             if (mx === "" || isNaN(mx) || Number(mx) <= 0) {
                 alert("Veuillez entrer un nombre valide.");
                 return;
             }
-            mx = Number(mx);
+             mx = Number(mx);
             if (selectedNumbers.length === mx) {
                 alert("Tous les nombres ont été choisis.");
                 selectedNumbers = [];
@@ -100,11 +98,30 @@
                 let shuffled;
                 do {
                     shuffled = Math.floor(Math.random() * mx) + 1;
-                } while (selectedNumbers.includes(shuffled));
+                } while ((selectedNumbers.includes(shuffled))&&(shuffled%2!=0));
             
                 selectedNumbers.push(shuffled);
                 document.getElementById("num").innerText = shuffled;
+        }
+        function num2() {
+            if (mx === "" || isNaN(mx) || Number(mx) <= 0) {
+                alert("Veuillez entrer un nombre valide.");
+                return;
             }
+             mx = Number(mx);
+            if (selectedNumbers.length === mx) {
+                alert("Tous les nombres ont été choisis.");
+                selectedNumbers = [];
+                document.getElementById("num").innerText = "";
+            }
+            else{
+                let shuffled;
+                do {
+                    shuffled = Math.floor(Math.random() * mx) + 1;
+                } while ((selectedNumbers.includes(shuffled))&&(shuffled%2!=0));
+            
+                selectedNumbers.push(shuffled);
+                document.getElementById("num").innerText = shuffled;
         }
         
 
@@ -121,7 +138,8 @@
         <tr>
             <td width="50%">
                 
-                <button onclick="num()">Choisir num</button>
+                <button onclick="num1()">Choisir num essei 1</button><br/><br/>
+                 <button onclick="num2()">Choisir num essei 2</button>
             </td>
             <td>Numéro: <strong id="num"></strong></td>
         </tr>
