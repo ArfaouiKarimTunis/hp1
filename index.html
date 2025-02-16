@@ -71,17 +71,11 @@
     <script>
         let selectedNumbers = [];
         let mx=prompt("donner nombre des utilisateur");
-        if(mx!=""){
-            document.addEventListener("click", function () {
-        let audio = document.getElementById("background-music");
-        if (audio.paused) {
-            audio.play().catch(error => {
-                console.log("Autoplay blocked: User interaction required");
-            });
-        } else {
-            audio.pause();
-        }
-    });
+        
+        function paire(nb){
+            i=2;
+            while((i<21)&&(i!=nb)){i=i+2;}
+            return i<21;
         }
         function num1(){
             if (mx === "" || isNaN(mx) || Number(mx) <= 0) {
@@ -96,13 +90,14 @@
             }
             else{
                 let shuffled;
+                do{
                 do {
                     shuffled = Math.floor(Math.random() * mx) + 1;
-                } while ((selectedNumbers.includes(shuffled))&&(shuffled%2!=0));
+                } while (selectedNumbers.includes(shuffled));}while(paire(shuffled))
             
                 selectedNumbers.push(shuffled);
                 document.getElementById("num").innerText = shuffled;
-        }
+        }}
         function num2() {
             if (mx === "" || isNaN(mx) || Number(mx) <= 0) {
                 alert("Veuillez entrer un nombre valide.");
@@ -116,22 +111,21 @@
             }
             else{
                 let shuffled;
+                do{
                 do {
                     shuffled = Math.floor(Math.random() * mx) + 1;
-                } while ((selectedNumbers.includes(shuffled))&&(shuffled%2!=0));
+                } while (selectedNumbers.includes(shuffled));}while(!paire(shuffled))
             
                 selectedNumbers.push(shuffled);
                 document.getElementById("num").innerText = shuffled;
-        }
+        }}
         
 
         
     </script>
 </head>
 <body>
-    <audio id="background-music" loop autoplay>
-        <source src="Amanati - Heroes - Official Audio (1).mp3" type="audio/mpeg">
-    </audio>
+    
     <div class="animated-text">HP</div>
         <tr>
     <table width="50%" border="2">
