@@ -70,19 +70,10 @@
     </style>
     <script>
         let selectedNumbers = [];
-        let mx=prompt("donner nombre des utilisateur");
+        let mx=20;
         
-        function paire(nb){
-            i=2;
-            while((i<21)&&(i!=nb)){i=i+2;}
-            return i<21;
-        }
-        function num1(){
-            if (mx === "" || isNaN(mx) || Number(mx) <= 0) {
-                alert("Veuillez entrer un nombre valide.");
-                return;
-            }
-             mx = Number(mx);
+        
+        function num(){
             if (selectedNumbers.length === mx) {
                 alert("Tous les nombres ont été choisis.");
                 selectedNumbers = [];
@@ -90,37 +81,15 @@
             }
             else{
                 let shuffled;
-                do{
+                
                 do {
                     shuffled = Math.floor(Math.random() * mx) + 1;
-                } while (selectedNumbers.includes(shuffled));}while(paire(shuffled))
-            
-                selectedNumbers.push(shuffled);
-                document.getElementById("num").innerText = shuffled;
-        }}
-        function num2() {
-            if (mx === "" || isNaN(mx) || Number(mx) <= 0) {
-                alert("Veuillez entrer un nombre valide.");
-                return;
-            }
-             mx = Number(mx);
-            if (selectedNumbers.length === mx) {
-                alert("Tous les nombres ont été choisis.");
-                selectedNumbers = [];
-                document.getElementById("num").innerText = "";
-            }
-            else{
-                let shuffled;
-                do{
-                do {
-                    shuffled = Math.floor(Math.random() * mx) + 1;
-                } while (selectedNumbers.includes(shuffled));}while(!paire(shuffled))
+                } while (selectedNumbers.includes(shuffled));
             
                 selectedNumbers.push(shuffled);
                 document.getElementById("num").innerText = shuffled;
         }}
         
-
         
     </script>
 </head>
@@ -132,8 +101,7 @@
         <tr>
             <td width="50%">
                 
-                <button onclick="num1()">Choisir num essei 1</button><br/><br/>
-                 <button onclick="num2()">Choisir num essei 2</button>
+                <button onclick="num()">Choisir num</button>
             </td>
             <td>Numéro: <strong id="num"></strong></td>
         </tr>
